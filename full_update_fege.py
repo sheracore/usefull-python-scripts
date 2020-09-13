@@ -7,10 +7,8 @@ from clickhouse_driver import Client
 
 class Update:
     def __init__(self,postgres, client,*args,**kwargs):
-        print("init")
         print(sys.argv[1], sys.argv[2], sys.argv[3])
         self.conn = psycopg2.connect(postgres_txt)
-        #print(args[0],args[1],kwargs["region"],kwargs["file_name"])
         self.province = args[0]
         self.region = kwargs["region"]
         self.file_name = kwargs["file_name"]
@@ -58,7 +56,6 @@ if __name__ == '__main__':
     client = Client('localhost')
     client.execute('use rpat')
     
-          
     object = Update(postgres_txt,client, sys.argv[3], region = sys.argv[2], file_name = sys.argv[1])
     object.get_file_data()
 
